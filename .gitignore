@@ -1,0 +1,7 @@
+.local/
+.repositorio/
+herramientas/
+evidencias/
+*.pdf
+*.docx
+__pycache__/
