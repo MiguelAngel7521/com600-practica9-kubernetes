@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tareas
+  annotations:
+    com600.usfx.bo/prueba-selfheal: '2026-10-22T12:27:25'
 spec:
   replicas: 3
   selector:
