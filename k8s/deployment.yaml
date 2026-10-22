@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tareas
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tareas
+  template:
+    metadata:
+      labels:
+        app: tareas
+        version: 1.0.0
+    spec:
+      containers:
+      - name: api
+        image: ghcr.io/miguelangel7521/com600-practica9-kubernetes:1.0.0
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: tareas-config
+        - secretRef:
+            name: tareas-secret
+        readinessProbe:
+          httpGet:
+            path: /salud
+            port: 3000
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /salud
+            port: 3000
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        resources:
+          requests:
+            cpu: 100m
+            memory: 64Mi
+          limits:
+            cpu: 500m
+            memory: 256Mi
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - sh
+              - -c
+              - sleep 5
+  minReadySeconds: 8
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0

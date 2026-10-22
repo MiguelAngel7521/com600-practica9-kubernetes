@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+data:
+  APP_ENTORNO: {{ .Values.config.entorno | quote }}
+  APP_PAGINA_TAM: {{ .Values.config.paginaTam | quote }}

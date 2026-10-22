@@ -1,0 +1,14 @@
+replicaCount: 4
+image:
+  tag: "2.0.0"
+ingress:
+  host: tareas-prod.localhost
+config:
+  entorno: produccion
+resources:
+  requests:
+    cpu: 150m
+    memory: 96Mi
+  limits:
+    cpu: 600m
+    memory: 256Mi

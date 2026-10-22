@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tareas
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: tareas.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: tareas
+                port:
+                  number: 80

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tareas-config
+data:
+  APP_ENTORNO: "laboratorio"
+  APP_PAGINA_TAM: "20"

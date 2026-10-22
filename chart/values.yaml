@@ -1,0 +1,19 @@
+replicaCount: 2
+image:
+  repository: ghcr.io/miguelangel7521/com600-practica9-kubernetes
+  tag: "1.0.0"
+service:
+  port: 80
+ingress:
+  host: tareas.localhost
+config:
+  entorno: laboratorio
+  paginaTam: "20"
+existingSecret: tareas-secret
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi

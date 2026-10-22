@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tareas
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/MiguelAngel7521/com600-practica9-kubernetes.git
+    targetRevision: main
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
