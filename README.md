@@ -87,7 +87,7 @@ La aplicación `tareas` se sincroniza automáticamente desde `k8s/` de este repo
 
 Para demostrar la reparación, ejecutar `kubectl scale deployment tareas --replicas=7`: Argo CD detecta OutOfSync y vuelve al número declarado en Git. El Secret de laboratorio se conserva fuera del directorio gestionado; la solución de secretos cifrados de la Parte 2 no se presenta como realizada aquí.
 
-Para hacer legible la transición en la captura 20 se configuró `controller.self.heal.timeout.seconds: "30"` en `argocd-cmd-params-cm` y se reinició su StatefulSet. `selfHeal` permaneció activo. Se sincronizó primero una anotación de demostración mediante Git y luego se provocó el cambio a siete réplicas; tras el intervalo, el controlador las devolvió automáticamente a tres. Este ajuste de observación no es necesario para desplegar la aplicación.
+Para observar la transición de la captura 20 se configuró `controller.self.heal.timeout.seconds: "30"` en `argocd-cmd-params-cm` y se reinició su StatefulSet. `selfHeal` permaneció activo. Se sincronizó primero una anotación de demostración mediante Git y luego se provocó el cambio a siete réplicas; el controlador las devolvió automáticamente a tres. Este parámetro no implica que toda corrección espere exactamente 30 segundos: en esta observación la transición ocurrió en pocos segundos. El ajuste no es necesario para desplegar la aplicación.
 
 ## Fuentes de consulta
 
